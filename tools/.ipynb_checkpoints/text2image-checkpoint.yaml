@@ -1,0 +1,142 @@
+# 工具描述
+description:
+  human:
+    en_US: Generate high-quality images from text prompts using Juxin API with Gemini 3 Pro Image Preview model. Supports negative prompts, aspect ratios, and various styles.
+    zh_Hans: 使用聚鑫 API 的 Gemini 3 Pro Image Preview 模型从文本提示生成高质量图像。支持负向提示词、宽高比和多种风格。
+  llm: This tool generates images from text descriptions using Juxin API with Gemini 3 Pro Image Preview model. It supports negative prompts, aspect ratios, and various image styles for diverse creative outputs.
+
+# 扩展配置
+extra:
+  python:
+    source: tools/text2image.py
+
+# 身份信息
+identity:
+  author: wwwzhouhui
+  icon: icon.svg
+  label:
+    en_US: Nano Banana2 Text2Image
+    zh_Hans: Nano Banana2 文生图
+  name: text2image
+
+# 参数配置
+parameters:
+- form: llm
+  human_description:
+    en_US: The text prompt to generate image from. Describe what you want to see in the image in detail. For example "A golden cat sitting on a red sofa in a cozy living room with warm lighting".
+    zh_Hans: 用于生成图像的文本提示。详细描述您希望在图像中看到的内容。例如"一只金色的猫坐在温暖灯光下舒适客厅的红色沙发上"。
+  label:
+    en_US: Image Prompt
+    zh_Hans: 图像提示词
+  llm_description: Text prompt that describes the desired image content in detail. The more specific and descriptive, the better the generated image quality.
+  name: prompt
+  required: true
+  type: string
+
+- form: form
+  human_description:
+    en_US: Optional negative prompt describing what you don't want in the image. For example "blurry, low quality, distorted".
+    zh_Hans: 可选的负向提示词,描述您不想在图像中出现的内容。例如"模糊,低质量,扭曲"。
+  label:
+    en_US: Negative Prompt (Optional)
+    zh_Hans: 负向提示词(可选)
+  llm_description: Negative prompt to specify what should not appear in the generated image.
+  name: negative_prompt
+  type: string
+  required: false
+
+- form: form
+  human_description:
+    en_US: Number of images to generate (1-4). Higher numbers will take more time and consume more credits.
+    zh_Hans: 生成图像的数量(1-4)。数量越多,耗时越长,消耗的额度也越多。
+  label:
+    en_US: Number of Images
+    zh_Hans: 图像数量
+  llm_description: How many images to generate from the prompt.
+  name: num_images
+  type: number
+  default: 1
+  min: 1
+  max: 4
+  required: false
+
+- form: form
+  human_description:
+    en_US: Creativity level (0.0-1.0). Higher values produce more creative and diverse results.
+    zh_Hans: 创造力水平(0.0-1.0)。数值越高,生成的结果越有创意和多样性。
+  label:
+    en_US: Temperature
+    zh_Hans: 创造力参数
+  llm_description: Controls the randomness/creativity of generation. 0.0 is most deterministic, 1.0 is most creative.
+  name: temperature
+  type: number
+  default: 0.7
+  min: 0.0
+  max: 1.0
+  required: false
+
+- form: form
+  human_description:
+    en_US: Image aspect ratio. Choose the ratio that best fits your needs.
+    zh_Hans: 图像宽高比。选择最适合您需求的比例。
+  label:
+    en_US: Aspect Ratio (Optional)
+    zh_Hans: 宽高比(可选)
+  llm_description: The aspect ratio of the generated image.
+  name: aspect_ratio
+  type: select
+  options:
+  - label:
+      en_US: Square (1:1)
+      zh_Hans: 正方形 (1:1)
+    value: "1:1"
+  - label:
+      en_US: Landscape (16:9)
+      zh_Hans: 横向 (16:9)
+    value: "16:9"
+  - label:
+      en_US: Portrait (9:16)
+      zh_Hans: 纵向 (9:16)
+    value: "9:16"
+  - label:
+      en_US: Standard (4:3)
+      zh_Hans: 标准 (4:3)
+    value: "4:3"
+  - label:
+      en_US: Portrait Standard (3:4)
+      zh_Hans: 纵向标准 (3:4)
+    value: "3:4"
+  required: false
+
+- form: form
+  human_description:
+    en_US: Image style. Different styles produce different artistic effects.
+    zh_Hans: 图像风格。不同的风格产生不同的艺术效果。
+  label:
+    en_US: Style (Optional)
+    zh_Hans: 风格(可选)
+  llm_description: The artistic style to apply to the generated image.
+  name: style
+  type: select
+  options:
+  - label:
+      en_US: Realistic
+      zh_Hans: 写实风格
+    value: "realistic"
+  - label:
+      en_US: Anime
+      zh_Hans: 动漫风格
+    value: "anime"
+  - label:
+      en_US: Oil Painting
+      zh_Hans: 油画风格
+    value: "oil-painting"
+  - label:
+      en_US: Watercolor
+      zh_Hans: 水彩风格
+    value: "watercolor"
+  - label:
+      en_US: Sketch
+      zh_Hans: 素描风格
+    value: "sketch"
+  required: false

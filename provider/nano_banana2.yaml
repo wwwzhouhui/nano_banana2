@@ -1,0 +1,37 @@
+# 认证配置
+credentials_for_provider:
+  api_key:
+    help:
+      en_US: Get your Juxin API key from https://api.jxincm.cn. You need to create an account and generate an API key.
+      zh_Hans: 从聚鑫 API 平台获取您的 API Key。您需要创建账户并生成 API 密钥。
+    label:
+      en_US: Juxin API Key
+      zh_Hans: 聚鑫 API Key
+    placeholder:
+      en_US: Please input your Juxin API Key
+      zh_Hans: 请输入您的聚鑫 API Key
+    required: true
+    type: secret-input
+    url: https://api.jxincm.cn/register?aff=SeEB
+
+# 扩展配置
+extra:
+  python:
+    source: provider/nano_banana2_provider.py
+
+# 身份信息
+identity:
+  author: wwwzhouhui
+  description:
+    en_US: Juxin API image generation service integration with Gemini 3 Pro Image Preview model
+    zh_Hans: 聚鑫 API 图像生成服务集成,使用 Gemini 3 Pro Image Preview 模型
+  icon: icon.svg
+  label:
+    en_US: Nano Banana2
+    zh_Hans: Nano Banana2
+  name: nano_banana2
+  tags: [image]
+
+# 工具列表
+tools:
+- tools/text2image.yaml
