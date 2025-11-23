@@ -1,14 +1,13 @@
-中文 ｜ [English](./README.md)
-
 [项目源码地址](https://github.com/wwwzhouhui/nano_banana2)：
 
-# 🍌 Nano Banana2 聚鑫 API 文生图插件
+# 🍌 Nano Banana2 文生图插件
 
-> 基于聚鑫 API 的高质量 AI 文生图 Dify 插件，使用 Gemini 3 Pro Image Preview 模型
+> 高质量 AI 文生图 Dify 插件，支持聚鑫 API 和 Gemai 公益站 API，使用 Gemini 3 Pro Image Preview 模型
 
 ## ✨ 特性
 
 - 🎨 **Gemini 3 Pro**: 使用 Google Gemini 3 Pro Image Preview 模型生成高质量图像
+- 🔄 **双 API 支持**: 支持聚鑫 API（付费）和 Gemai 公益站 API（免费）
 - 🚫 **负向提示词**: 支持指定不想要的内容，提高生成质量
 - 📐 **宽高比选择**: 支持多种宽高比（1:1, 16:9, 9:16, 4:3, 3:4）
 - 🖌️ **风格控制**: 支持多种艺术风格（写实、动漫、油画、水彩、素描）
@@ -20,11 +19,21 @@
 
 ## 🚀 快速开始
 
-### 1. 获取聚鑫 API Key
+### 1. 获取 API Key
+
+#### 方式一：聚鑫 API（付费）
 
 1. 访问 [聚鑫 API 平台](https://api.jxincm.cn/register?aff=SeEB)
 2. 创建账户并生成 API Key
 3. 复制您的 API Key
+
+#### 方式二：Gemai 公益站（免费）
+
+1. 访问 [Gemai 公益站](https://api.gemai.cc/register?aff=ND9Y)
+2. 获取免费的 API Key
+3. 复制您的 API Key
+
+**注意**: 您可以同时配置两个 API Key，在使用时选择其中一个
 
 ### 2. 安装插件
 
@@ -45,7 +54,9 @@
 安装完成后：
 1. 点击插件右侧的"授权"按钮
 
-2. 填写您的聚鑫 API Key
+2. 填写您的 API Key（可以只配置一个，也可以两个都配置）
+   - **聚鑫 API Key**: 付费服务，质量稳定
+   - **Gemai 公益站 API Key**: 免费服务
 
 3. 点击保存
 
@@ -53,26 +64,32 @@
 
 ### 4. 开始使用
 
-在 Agent 或 Chatflow 中添加 Nano Banana2 文生图工具即可使用
+在 Agent 或 Chatflow 中添加 Nano Banana2 文生图工具：
+1. 选择 API 提供商（聚鑫 API 或 Gemai 公益站 API）
+2. 输入图像描述即可生成图像
 
 ## 🎯 模型说明
 
-本插件使用聚鑫 API 提供的 **Gemini 3 Pro Image Preview** 模型：
+本插件使用 **Gemini 3 Pro Image Preview** 模型：
 
 - **模型名称**: gemini-3-pro-image-preview
 - **特点**: 高质量图像生成，支持多种风格和宽高比
-- **API 提供商**: 聚鑫 API (https://api.jxincm.cn)
+- **API 提供商**:
+  - 聚鑫 API (https://api.jxincm.cn) - 付费服务，质量稳定
+  - Gemai 公益站 (https://api.gemai.cc) - 免费服务
 
 ## 📖 使用示例
 
 ### 基础文生图
 
 **提示词：**
+
 ```
 2个螃蟹在打架
 ```
 
 **参数设置：**
+- API 提供商: 聚鑫 API 或 Gemai 公益站 API
 - 宽高比: 16:9
 - 风格: 动漫风格
 - 创造力参数: 0.7
@@ -82,6 +99,30 @@
 最终的效果
 
 ![image-20251123162054877](https://mypicture-1258720957.cos.ap-nanjing.myqcloud.com/Obsidian/image-20251123162054877.png)
+
+**提示词：**
+
+```
+创建一个解释[光合作用]的教育信息图。
+视觉元素：展示关键组成部分：太阳、一株绿色植物、水（H2O）进入根部、二氧化碳（CO2）进入叶片，以及氧气（O2）被释放。
+风格：简洁、扁平化的矢量插图，适合高中科学教科书。使用箭头表示能量和物质的流动。
+标签：用简体中文清晰地标注每个元素。
+```
+
+**参数设置：**
+
+- API 提供商: 聚鑫 API 或 Gemai 公益站 API
+- 宽高比: 16:9
+- 风格: 动漫风格
+- 创造力参数: 0.7
+
+最终的效果
+
+![image-20251123181434849](https://mypicture-1258720957.cos.ap-nanjing.myqcloud.com/Obsidian/image-20251123181434849.png)
+
+图片放大
+
+![9cfdca73-8ef7-446c-ad44-6589eb721bea](https://mypicture-1258720957.cos.ap-nanjing.myqcloud.com/Obsidian/9cfdca73-8ef7-446c-ad44-6589eb721bea.png)
 
 ### Agent 使用示例
 
@@ -128,13 +169,17 @@ nano_banana2/
 ## 🔧 配置说明
 
 ### API Key 配置
-- 在 Dify 插件配置中输入您的聚鑫 API Key
-- 确保账户有足够额度
+- 在 Dify 插件配置中输入您的 API Key
+- 可以同时配置聚鑫 API Key 和 Gemai API Key
+- 使用时选择对应的 API 提供商
+- 聚鑫 API 需要确保账户有足够额度
+- Gemai 公益站 API 免费使用
 
 ### 参数详解
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
+| api_provider | select | 是 | juxin | API 提供商（juxin/gemai） |
 | prompt | string | 是 | - | 图像描述文本（正向提示词） |
 | negative_prompt | string | 否 | - | 负向提示词（不想要的内容） |
 | num_images | number | 否 | 1 | 生成图像数量（1-4） |
@@ -208,15 +253,18 @@ MIT License
 ## 🔗 相关链接
 
 - [聚鑫 API 平台](https://api.jxincm.cn/register?aff=SeEB)
+- [Gemai 公益站](https://api.gemai.cc)
 - [Dify 插件开发文档](https://docs.dify.ai/plugins)
 - [Gemini API 文档](https://ai.google.dev/gemini-api/docs)
 
 ## ⚠️ 注意事项
 
-1. **API 额度**: 使用本插件需要有效的聚鑫 API Key 和足够的额度
-2. **内容政策**: 请遵守聚鑫 API 的使用条款，不要生成违规内容
-3. **使用限制**: 请注意 API 调用频率限制
-4. **隐私保护**: 本插件不会存储您的提示词和生成的图像
+1. **API Key 配置**: 至少需要配置一个 API Key（聚鑫或 Gemai）
+2. **API 额度**: 聚鑫 API 使用需要有效的 API Key 和足够的额度，Gemai 公益站 API 免费使用
+3. **API 选择**: 使用时需要选择对应的 API 提供商
+4. **内容政策**: 请遵守 API 提供商的使用条款，不要生成违规内容
+5. **使用限制**: 请注意 API 调用频率限制
+6. **隐私保护**: 本插件不会存储您的提示词和生成的图像
 
 ## 💡 提示
 

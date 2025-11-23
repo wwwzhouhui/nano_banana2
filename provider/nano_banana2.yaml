@@ -1,6 +1,6 @@
 # 认证配置
 credentials_for_provider:
-  api_key:
+  juxin_api_key:
     help:
       en_US: Get your Juxin API key from https://api.jxincm.cn. You need to create an account and generate an API key.
       zh_Hans: 从聚鑫 API 平台获取您的 API Key。您需要创建账户并生成 API 密钥。
@@ -10,9 +10,23 @@ credentials_for_provider:
     placeholder:
       en_US: Please input your Juxin API Key
       zh_Hans: 请输入您的聚鑫 API Key
-    required: true
+    required: false
     type: secret-input
     url: https://api.jxincm.cn/register?aff=SeEB
+
+  gemai_api_key:
+    help:
+      en_US: Get your Gemai API key from https://api.gemai.cc. This is a free public API.
+      zh_Hans: 从 Gemai 公益站获取您的 API Key。这是一个免费的公益 API 服务。
+    label:
+      en_US: Gemai API Key
+      zh_Hans: Gemai 公益站 API Key
+    placeholder:
+      en_US: Please input your Gemai API Key
+      zh_Hans: 请输入您的 Gemai API Key
+    required: false
+    type: secret-input
+    url: https://api.gemai.cc/register?aff=ND9Y
 
 # 扩展配置
 extra:
@@ -23,8 +37,8 @@ extra:
 identity:
   author: wwwzhouhui
   description:
-    en_US: Juxin API image generation service integration with Gemini 3 Pro Image Preview model
-    zh_Hans: 聚鑫 API 图像生成服务集成,使用 Gemini 3 Pro Image Preview 模型
+    en_US: AI image generation service supporting Juxin API and Gemai public API with Gemini 3 Pro Image Preview model
+    zh_Hans: AI 图像生成服务,支持聚鑫 API 和 Gemai 公益站 API,使用 Gemini 3 Pro Image Preview 模型
   icon: icon.svg
   label:
     en_US: Nano Banana2

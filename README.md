@@ -1,14 +1,13 @@
-[中文](./README_CN.md) ｜ English
-
 [Project Source Code](https://github.com/wwwzhouhui/nano_banana2):
 
-# 🍌 Nano Banana2 Juxin API Text-to-Image Plugin
+# 🍌 Nano Banana2 Text-to-Image Plugin
 
-> High-quality AI text-to-image Dify plugin based on Juxin API, using Gemini 3 Pro Image Preview model
+> High-quality AI text-to-image Dify plugin supporting Juxin API and Gemai public API, using Gemini 3 Pro Image Preview model
 
 ## ✨ Features
 
 - 🎨 **Gemini 3 Pro**: Uses Google Gemini 3 Pro Image Preview model for high-quality image generation
+- 🔄 **Dual API Support**: Supports Juxin API (paid) and Gemai public API (free)
 - 🚫 **Negative Prompts**: Supports specifying unwanted content to improve generation quality
 - 📐 **Aspect Ratio Selection**: Supports multiple aspect ratios (1:1, 16:9, 9:16, 4:3, 3:4)
 - 🖌️ **Style Control**: Supports various artistic styles (realistic, anime, oil-painting, watercolor, sketch)
@@ -20,11 +19,21 @@
 
 ## 🚀 Quick Start
 
-### 1. Get Juxin API Key
+### 1. Get API Key
+
+#### Option 1: Juxin API (Paid)
 
 1. Visit [Juxin API Platform](https://api.jxincm.cn/register?aff=SeEB)
 2. Create an account and generate an API Key
 3. Copy your API Key
+
+#### Option 2: Gemai Public API (Free)
+
+1. Visit [Gemai Public API](https://api.gemai.cc/register?aff=ND9Y)
+2. Get a free API Key
+3. Copy your API Key
+
+**Note**: You can configure both API Keys and choose which one to use when generating images
 
 ### 2. Install Plugin
 
@@ -45,7 +54,9 @@ Search for "Nano Banana2" in the Dify plugin marketplace and install
 After installation:
 1. Click the "Authorize" button on the right side of the plugin
 
-2. Fill in your Juxin API Key
+2. Fill in your API Key(s) (you can configure one or both)
+   - **Juxin API Key**: Paid service, stable quality
+   - **Gemai Public API Key**: Free service
 
 3. Click Save
 
@@ -53,15 +64,19 @@ After installation:
 
 ### 4. Start Using
 
-Add the Nano Banana2 text-to-image tool in Agent or Chatflow to start using it
+Add the Nano Banana2 text-to-image tool in Agent or Chatflow:
+1. Select API provider (Juxin API or Gemai Public API)
+2. Enter image description to generate images
 
 ## 🎯 Model Information
 
-This plugin uses the **Gemini 3 Pro Image Preview** model provided by Juxin API:
+This plugin uses the **Gemini 3 Pro Image Preview** model:
 
 - **Model Name**: gemini-3-pro-image-preview
 - **Features**: High-quality image generation, supports multiple styles and aspect ratios
-- **API Provider**: Juxin API (https://api.jxincm.cn)
+- **API Providers**:
+  - Juxin API (https://api.jxincm.cn) - Paid service, stable quality
+  - Gemai Public API (https://api.gemai.cc) - Free service
 
 ## 📖 Usage Examples
 
@@ -73,6 +88,7 @@ Two crabs fighting
 ```
 
 **Parameter Settings:**
+- API Provider: Juxin API or Gemai Public API
 - Aspect Ratio: 16:9
 - Style: anime
 - Temperature: 0.7
@@ -82,6 +98,30 @@ Two crabs fighting
 Final Result:
 
 ![image-20251123162054877](https://mypicture-1258720957.cos.ap-nanjing.myqcloud.com/Obsidian/image-20251123162054877.png)
+
+**Prompt:**
+
+```
+Create an educational infographic explaining [Photosynthesis].
+Visual elements: Show the key components: the sun, a green plant, water (H2O) entering the roots, carbon dioxide (CO2) entering the leaves, and oxygen (O2) being released.
+Style: Clean, flat-vector illustration suitable for a high school science textbook. Use arrows to indicate the flow of energy and materials.
+Labels: Clearly label each element in English.
+```
+
+**Parameter Settings:**
+
+- API Provider: Juxin API or Gemai Public API
+- Aspect Ratio: 16:9
+- Style: anime
+- Temperature: 0.7
+
+Final Result
+
+![image-20251123181434849](https://mypicture-1258720957.cos.ap-nanjing.myqcloud.com/Obsidian/image-20251123181434849.png)
+
+Zoomed Image
+
+![9cfdca73-8ef7-446c-ad44-6589eb721bea](https://mypicture-1258720957.cos.ap-nanjing.myqcloud.com/Obsidian/9cfdca73-8ef7-446c-ad44-6589eb721bea.png)
 
 ### Agent Usage Example
 
@@ -128,13 +168,17 @@ nano_banana2/
 ## 🔧 Configuration Guide
 
 ### API Key Configuration
-- Enter your Juxin API Key in the Dify plugin configuration
-- Ensure your account has sufficient credits
+- Enter your API Key(s) in the Dify plugin configuration
+- You can configure both Juxin API Key and Gemai API Key
+- Select the corresponding API provider when using
+- Juxin API requires sufficient credits
+- Gemai Public API is free to use
 
 ### Parameter Details
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
+| api_provider | select | Yes | juxin | API provider (juxin/gemai) |
 | prompt | string | Yes | - | Image description text (positive prompt) |
 | negative_prompt | string | No | - | Negative prompt (unwanted content) |
 | num_images | number | No | 1 | Number of images to generate (1-4) |
@@ -208,15 +252,18 @@ MIT License
 ## 🔗 Related Links
 
 - [Juxin API Platform](https://api.jxincm.cn/register?aff=SeEB)
+- [Gemai Public API](https://api.gemai.cc)
 - [Dify Plugin Development Documentation](https://docs.dify.ai/plugins)
 - [Gemini API Documentation](https://ai.google.dev/gemini-api/docs)
 
 ## ⚠️ Important Notes
 
-1. **API Credits**: Using this plugin requires a valid Juxin API Key and sufficient credits
-2. **Content Policy**: Please comply with Juxin API's terms of use, do not generate prohibited content
-3. **Usage Limits**: Be aware of API call rate limits
-4. **Privacy Protection**: This plugin does not store your prompts and generated images
+1. **API Key Configuration**: At least one API Key (Juxin or Gemai) is required
+2. **API Credits**: Juxin API requires a valid API Key and sufficient credits, Gemai Public API is free
+3. **API Selection**: You need to select the corresponding API provider when using
+4. **Content Policy**: Please comply with the API provider's terms of use, do not generate prohibited content
+5. **Usage Limits**: Be aware of API call rate limits
+6. **Privacy Protection**: This plugin does not store your prompts and generated images
 
 ## 💡 Tips
 

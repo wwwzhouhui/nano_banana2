@@ -1,9 +1,9 @@
 # 工具描述
 description:
   human:
-    en_US: Generate high-quality images from text prompts using Juxin API with Gemini 3 Pro Image Preview model. Supports negative prompts, aspect ratios, and various styles.
-    zh_Hans: 使用聚鑫 API 的 Gemini 3 Pro Image Preview 模型从文本提示生成高质量图像。支持负向提示词、宽高比和多种风格。
-  llm: This tool generates images from text descriptions using Juxin API with Gemini 3 Pro Image Preview model. It supports negative prompts, aspect ratios, and various image styles for diverse creative outputs.
+    en_US: Generate high-quality images from text prompts using Juxin API or Gemai public API with Gemini 3 Pro Image Preview model. Supports negative prompts, aspect ratios, and various styles.
+    zh_Hans: 使用聚鑫 API 或 Gemai 公益站 API 的 Gemini 3 Pro Image Preview 模型从文本提示生成高质量图像。支持负向提示词、宽高比和多种风格。
+  llm: This tool generates images from text descriptions using Juxin API or Gemai public API with Gemini 3 Pro Image Preview model. It supports negative prompts, aspect ratios, and various image styles for diverse creative outputs.
 
 # 扩展配置
 extra:
@@ -21,6 +21,28 @@ identity:
 
 # 参数配置
 parameters:
+- form: form
+  human_description:
+    en_US: Choose which API provider to use for image generation. Juxin API requires paid credits, Gemai is a free public API.
+    zh_Hans: 选择用于生成图像的 API 提供商。聚鑫 API 需要付费额度,Gemai 是免费的公益 API。
+  label:
+    en_US: API Provider
+    zh_Hans: API 提供商
+  llm_description: The API provider to use for image generation.
+  name: api_provider
+  type: select
+  default: "juxin"
+  options:
+  - label:
+      en_US: Juxin API
+      zh_Hans: 聚鑫 API
+    value: "juxin"
+  - label:
+      en_US: Gemai Public API
+      zh_Hans: Gemai 公益站 API
+    value: "gemai"
+  required: true
+
 - form: llm
   human_description:
     en_US: The text prompt to generate image from. Describe what you want to see in the image in detail. For example "A golden cat sitting on a red sofa in a cozy living room with warm lighting".
