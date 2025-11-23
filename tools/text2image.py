@@ -114,9 +114,10 @@ class Text2ImageTool(Tool):
             yield self.create_text_message(f"🔢 生成数量: {num_images}")
             yield self.create_text_message(f"🌡️ 创造力参数: {temperature}")
             yield self.create_text_message("⏳ 正在生成图像,请稍候...")
+            yield self.create_text_message("💡 图像生成可能需要 1-5 分钟,请耐心等待...")
 
-            # 发送请求
-            response = requests.post(endpoint, headers=headers, json=payload, timeout=120)
+            # 发送请求（超时时间 5 分钟）
+            response = requests.post(endpoint, headers=headers, json=payload, timeout=300)
 
             if response.status_code != 200:
                 yield self.create_text_message(f"🔧 API 响应状态码: {response.status_code}")
@@ -131,7 +132,15 @@ class Text2ImageTool(Tool):
         except requests.exceptions.HTTPError as e:
             yield from self._handle_http_error(e, "聚鑫")
         except requests.exceptions.Timeout:
-            yield self.create_text_message("❌ 请求超时,请检查网络连接或稍后重试")
+            yield self.create_text_message("❌ 请求超时（超过5分钟）")
+            yield self.create_text_message("💡 可能原因：")
+            yield self.create_text_message("1. 网络连接不稳定")
+            yield self.create_text_message("2. API 服务器负载较高")
+            yield self.create_text_message("3. 图像生成任务过于复杂")
+            yield self.create_text_message("💡 建议：")
+            yield self.create_text_message("1. 检查网络连接")
+            yield self.create_text_message("2. 简化提示词或降低图像数量")
+            yield self.create_text_message("3. 稍后重试")
         except requests.exceptions.RequestException as e:
             yield self.create_text_message(f"❌ 网络请求错误: {str(e)}")
         except Exception as e:
@@ -214,9 +223,10 @@ class Text2ImageTool(Tool):
             yield self.create_text_message(f"🔢 生成数量: {num_images}")
             yield self.create_text_message(f"🌡️ 创造力参数: {temperature}")
             yield self.create_text_message("⏳ 正在生成图像,请稍候...")
+            yield self.create_text_message("💡 图像生成可能需要 1-5 分钟,请耐心等待...")
 
-            # 发送请求
-            response = requests.post(endpoint, headers=headers, json=payload, timeout=120)
+            # 发送请求（超时时间 5 分钟）
+            response = requests.post(endpoint, headers=headers, json=payload, timeout=300)
 
             if response.status_code != 200:
                 yield self.create_text_message(f"🔧 API 响应状态码: {response.status_code}")
@@ -231,7 +241,15 @@ class Text2ImageTool(Tool):
         except requests.exceptions.HTTPError as e:
             yield from self._handle_http_error(e, "Gemai")
         except requests.exceptions.Timeout:
-            yield self.create_text_message("❌ 请求超时,请检查网络连接或稍后重试")
+            yield self.create_text_message("❌ 请求超时（超过5分钟）")
+            yield self.create_text_message("💡 可能原因：")
+            yield self.create_text_message("1. 网络连接不稳定")
+            yield self.create_text_message("2. 公益站 API 服务器负载较高")
+            yield self.create_text_message("3. 图像生成任务过于复杂")
+            yield self.create_text_message("💡 建议：")
+            yield self.create_text_message("1. 检查网络连接")
+            yield self.create_text_message("2. 简化提示词或降低图像数量")
+            yield self.create_text_message("3. 稍后重试或切换到聚鑫 API")
         except requests.exceptions.RequestException as e:
             yield self.create_text_message(f"❌ 网络请求错误: {str(e)}")
         except Exception as e:
